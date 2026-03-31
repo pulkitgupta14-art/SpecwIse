@@ -20,3 +20,4 @@ dev.db
 dev.db-journal
 server.log
 pnpm-lock.yaml
+.vercel

@@ -3,6 +3,7 @@
 import { Check, X, AlertTriangle, ThermometerSun, BatteryWarning, Timer, Clock } from 'lucide-react'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import type { RecommendationResult } from '@/lib/types'
 import { cn } from '@/lib/utils'
@@ -40,11 +41,10 @@ export function PhoneCard({ recommendation, rank, isSelected, onSelect }: PhoneC
   return (
     <Card
       className={cn(
-        'relative cursor-pointer transition-all duration-200 hover:shadow-lg',
-        isSelected && 'ring-2 ring-foreground',
-        rank === 1 && 'border-foreground/30'
+        'relative transition-all duration-300 hover:shadow-xl hover:-translate-y-1',
+        isSelected && 'ring-2 ring-primary shadow-md',
+        rank === 1 && 'border-primary/40'
       )}
-      onClick={onSelect}
     >
       {rank === 1 && (
         <div className="absolute -top-3 left-4 z-10">
@@ -67,8 +67,29 @@ export function PhoneCard({ recommendation, rank, isSelected, onSelect }: PhoneC
               {phone.processor}
             </div>
           </div>
-          <div className="text-2xl font-bold text-foreground shrink-0">
-            {formatPrice(phone.price)}
+          <div className="flex flex-col items-end gap-3 shrink-0">
+            <div className="text-2xl font-bold text-foreground">
+              {formatPrice(phone.price)}
+            </div>
+            {onSelect && (
+              <Button
+                variant={isSelected ? "secondary" : "default"}
+                size="sm"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onSelect()
+                }}
+                className={cn("w-full gap-2", isSelected && "bg-muted hover:bg-muted/80")}
+              >
+                {isSelected ? (
+                  <>
+                    <X className="h-3 w-3" /> Remove
+                  </>
+                ) : (
+                  <>Compare</>
+                )}
+              </Button>
+            )}
           </div>
         </div>
       </CardHeader>
