@@ -21,15 +21,22 @@ export function ResultsSection({ recommendations, onReset }: ResultsSectionProps
   const [budgetFilter, setBudgetFilter] = useState('all')
 
   const togglePhoneSelection = (phoneId: string) => {
-    setSelectedPhoneIds(prev => {
-      if (prev.includes(phoneId)) {
-        return prev.filter(id => id !== phoneId)
-      }
-      if (prev.length >= 3) {
-        return [...prev.slice(1), phoneId]
-      }
-      return [...prev, phoneId]
-    })
+    let nextState = [...selectedPhoneIds];
+    if (nextState.includes(phoneId)) {
+      nextState = nextState.filter(id => id !== phoneId);
+    } else if (nextState.length >= 3) {
+      nextState = [...nextState.slice(1), phoneId];
+    } else {
+      nextState = [...nextState, phoneId];
+    }
+    
+    setSelectedPhoneIds(nextState);
+    
+    if (nextState.length >= 2) {
+      setShowComparison(true);
+    } else {
+      setShowComparison(false);
+    }
   }
 
   const selectedPhones = recommendations
