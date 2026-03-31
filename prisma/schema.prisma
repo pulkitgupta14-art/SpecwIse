@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Phone {
+  id               String   @id
+  name             String
+  brand            String
+  price            Float
+  processor        String
+  cameraScore      Int
+  batteryScore     Int
+  performanceScore Int
+  heatingIssue     Boolean
+  longTermScore    Int
+  pros             String   // JSON stringified
+  cons             String   // JSON stringified
+  imageUrl         String
+  backImageUrl     String?
+  releaseYear      Int
+  updateYears      Int
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
