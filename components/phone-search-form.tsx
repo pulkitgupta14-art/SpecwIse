@@ -59,7 +59,7 @@ export function PhoneSearchForm({ onSearch, isLoading }: PhoneSearchFormProps) {
   }
 
   return (
-    <section className="py-16 md:py-24">
+    <section id="search-form" className="py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-2xl">
           <form onSubmit={handleSubmit} className="flex flex-col gap-12">

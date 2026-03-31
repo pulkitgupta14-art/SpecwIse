@@ -1,6 +1,7 @@
 'use client'
 
-import { Sparkles } from 'lucide-react'
+import { Sparkles, ArrowDown } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 export function HeroSection() {
   return (
@@ -32,30 +33,38 @@ export function HeroSection() {
             className="specwise-hero-animate mb-6 text-4xl font-bold tracking-tight text-balance text-white md:text-5xl lg:text-6xl lg:leading-[1.08]"
             style={{ animationDelay: '90ms' }}
           >
-            Welcome to{' '}
-            <span className="bg-gradient-to-r from-white via-white to-white/90 bg-clip-text">
-              Spec
-            </span>
+            Find the Best{' '}
             <span className="bg-gradient-to-r from-sky-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
-              Wise
-            </span>
+              Smartphone
+            </span>{' '}
+            for Your Budget
           </h1>
 
           <p
-            className="specwise-hero-animate mx-auto max-w-xl text-lg font-medium text-sky-100/90 md:text-xl"
+            className="specwise-hero-animate mx-auto mt-5 max-w-xl text-lg font-medium text-sky-100/90 md:text-xl"
             style={{ animationDelay: '180ms' }}
           >
-            Choose Smart. Not Just Specs.
+            Compare phones, filter by price, and choose smarter.
           </p>
 
-          <p
-            className="specwise-hero-animate mx-auto mt-5 max-w-2xl text-base leading-relaxed text-pretty text-white/55 md:text-lg"
-            style={{ animationDelay: '260ms' }}
+          <div
+            className="specwise-hero-animate mt-10 flex justify-center gap-4"
+            style={{ animationDelay: '300ms' }}
           >
-            Tell us your budget and how you use your phone. We balance real-world
-            fit — performance, camera, battery, and longevity — so you pick with
-            confidence.
-          </p>
+            <Button 
+              size="lg" 
+              className="rounded-full px-8 py-6 text-base font-semibold transition-all hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:shadow-[0_0_30px_rgba(56,189,248,0.5)]"
+              onClick={() => {
+                window.scrollTo({
+                  top: document.getElementById('search-form')?.offsetTop || 500,
+                  behavior: 'smooth'
+                })
+              }}
+            >
+              Start Comparing
+              <ArrowDown className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
         </div>
       </div>
     </section>
