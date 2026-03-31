@@ -1,6 +1,7 @@
 'use client'
 
 import { Phone } from '@/lib/types'
+import { useEffect, useRef } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Check, X, Smartphone } from 'lucide-react'
 import { Progress } from '@/components/ui/progress'
@@ -19,10 +20,20 @@ function formatPrice(price: number) {
 }
 
 export function ComparisonPanel({ phones }: ComparisonPanelProps) {
+  const panelRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (phones.length >= 2 && panelRef.current) {
+      setTimeout(() => {
+        panelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 150)
+    }
+  }, [phones.length])
+
   if (phones.length === 0) return null
 
   return (
-    <Card className="mb-12 border-primary/20 bg-background/50 shadow-md">
+    <Card ref={panelRef} className="mb-12 border-primary/20 bg-background/50 shadow-md">
       <CardHeader className="border-b bg-muted/20 pb-4">
         <div className="flex items-center gap-2">
           <Smartphone className="h-5 w-5 text-primary" />
